@@ -1,11 +1,11 @@
-package com.openkotlin.crashhandler.demo
+package com.openkotlin.crashahandlerdemo
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import com.openkotlin.crashhandler.R
+import com.openkotlin.crashhandlerdemo.R
 import java.text.SimpleDateFormat
 import java.util.*
 

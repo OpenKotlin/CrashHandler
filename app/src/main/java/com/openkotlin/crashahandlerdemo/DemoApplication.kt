@@ -1,4 +1,4 @@
-package com.openkotlin.crashhandler.demo
+package com.openkotlin.crashahandlerdemo
 
 import android.app.Activity
 import android.app.Application
