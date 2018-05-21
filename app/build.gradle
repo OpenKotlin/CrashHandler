@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "crashhandler.openkotlin.com.crashhandler"
+        applicationId "com.openkotlin.crashhandler"
         minSdkVersion 22
         targetSdkVersion 27
         versionCode 1
