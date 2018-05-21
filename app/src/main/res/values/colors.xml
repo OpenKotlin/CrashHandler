@@ -2,5 +2,11 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
+    <color name="blueLight">#8B98C8</color>
+    <color name="blueGray">#EAEDF8</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray">#9B9B9B</color>
+    <color name="grayDark">#2E2E2E</color>
+    <color name="grayLight">#EAEAEA</color>
     <color name="colorAccent">#FF4081</color>
 </resources>

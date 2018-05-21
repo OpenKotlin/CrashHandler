@@ -52,9 +52,6 @@ internal class CrashHandleLooper : Runnable {
                 val handler: Handler = target.get(message) as Handler
                 handler.dispatchMessage(message)
                 Binder.clearCallingIdentity()
-
-                if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP)
-                    message.recycle()
             } catch (invocationTargetException: InvocationTargetException) {
                 val throwable = invocationTargetException.cause?: invocationTargetException
                 uncaughtExceptionHandler.uncaughtException(Thread.currentThread(), throwable)
