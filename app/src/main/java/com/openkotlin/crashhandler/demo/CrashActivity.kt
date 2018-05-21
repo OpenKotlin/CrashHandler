@@ -19,6 +19,7 @@ class CrashActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_crash)
         initWidget()
         initEvent()
         initData()
