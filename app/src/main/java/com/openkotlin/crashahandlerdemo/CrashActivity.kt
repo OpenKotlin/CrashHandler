@@ -25,11 +25,6 @@ class CrashActivity : AppCompatActivity(), View.OnClickListener {
         initData()
     }
 
-    override fun onResume() {
-        super.onResume()
-        window.decorView.systemUiVisibility = DemoApplication.ACTIVITY_VISIBILITY_OPTIONS
-    }
-
     private fun initWidget() {
         tvTime = findViewById(R.id.tv_time)
         tvErrorDetails = findViewById(R.id.tv_details)
@@ -57,7 +52,10 @@ class CrashActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         if (v == null) return
         when(v.id){
-            R.id.btn_close_app -> finish()
+            R.id.btn_close_app -> {
+                finish()
+                overridePendingTransition(R.anim.activity_enter, R.anim.activity_exit)
+            }
             R.id.btn_details -> {
                 isDetailsShowing = !isDetailsShowing
                 btnDetails.setText(if(isDetailsShowing) R.string.hide_details else R.string.show_details)

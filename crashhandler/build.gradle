@@ -25,6 +25,5 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'org.jetbrains.kotlin:kotlin-reflect:1.2.41'
+    api "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 }

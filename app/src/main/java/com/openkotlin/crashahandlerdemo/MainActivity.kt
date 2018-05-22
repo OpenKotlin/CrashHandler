@@ -17,11 +17,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btnCrash.setOnClickListener(this)
     }
 
-    override fun onResume() {
-        super.onResume()
-        window.decorView.systemUiVisibility = DemoApplication.ACTIVITY_VISIBILITY_OPTIONS
-    }
-
     override fun onClick(v: View?) {
         var a = 1/0
     }
