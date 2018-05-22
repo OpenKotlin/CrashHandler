@@ -9,7 +9,7 @@ import com.openkotlin.crashhandler.CrashListener
 import java.io.PrintWriter
 import java.io.StringWriter
 
-class DemoApplication: Application(), CrashListener {
+class DemoApplication : Application(), CrashListener {
 
     companion object {
         const val ACTIVITY_VISIBILITY_OPTIONS = (

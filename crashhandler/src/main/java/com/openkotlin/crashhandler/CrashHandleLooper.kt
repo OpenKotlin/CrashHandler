@@ -34,7 +34,7 @@ internal class CrashHandleLooper : Runnable {
             val method: Method = MessageQueue::class.java.getDeclaredMethod("next")
             method.isAccessible = true
             next = method
-            val field: Field = MessageQueue::class.java.getDeclaredField("target")
+            val field: Field = Message::class.java.getDeclaredField("target")
             field.isAccessible = true
             target = field
         } catch (e: Exception) {
