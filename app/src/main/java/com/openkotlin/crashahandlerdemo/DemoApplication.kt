@@ -16,16 +16,20 @@ class DemoApplication : Application(), CrashListener {
 
     override fun onCreate() {
         super.onCreate()
-        CrashHandler.of(this).install(this)
+        CrashHandler.of(this).install(this, false)
     }
 
-    override fun onCrash(t: Throwable?, activity: Activity): Boolean {
+    override fun handleCrashInUiThread(t: Throwable?, activity: Activity) {
         val errorInfo = getErrorInfo(t)
         val errorIntent = Intent(this, CrashActivity::class.java)
+        errorIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         errorIntent.putExtra(ERROR_INFO, errorInfo)
         activity.finish()
         startActivity(errorIntent)
-        return false
+    }
+
+    override fun handleCrashInAsync(t: Throwable?) {
+        //Upload crash info
     }
 
     private fun getErrorInfo(t: Throwable?): String {
