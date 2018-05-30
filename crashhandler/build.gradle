@@ -11,7 +11,7 @@ android {
         minSdkVersion 22
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
     }
 
     buildTypes {
@@ -27,3 +27,5 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     api "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 }
+
+apply from : "bintrayUpload.gradle"
