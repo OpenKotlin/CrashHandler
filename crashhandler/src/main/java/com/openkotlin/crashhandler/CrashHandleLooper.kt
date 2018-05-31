@@ -3,26 +3,21 @@ package com.openkotlin.crashhandler
 import android.os.*
 import android.util.Log
 import java.lang.reflect.Field
-import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Method
 
-internal class CrashHandleLooper : Runnable {
+internal class CrashHandleLooper(private var crashHandler: CrashHandler) : Runnable {
+
     companion object {
         private val TAG = CrashHandleLooper::class.simpleName
         private val CRASH_THREAD_LOCAL: ThreadLocal<CrashHandleLooper> = ThreadLocal()
         private val EXIT: Any = Any()
         private val mainHandler: Handler = Handler(Looper.getMainLooper())
-        private lateinit var uncaughtExceptionHandler: Thread.UncaughtExceptionHandler
-
-        fun setCrashHandler(exceptionHandler: Thread.UncaughtExceptionHandler) {
-            uncaughtExceptionHandler = exceptionHandler
-        }
 
         fun isLooperInstalled() = CRASH_THREAD_LOCAL.get() != null
 
-        fun install() {
+        fun install(crashHandler: CrashHandler) {
             mainHandler.removeMessages(0, EXIT)
-            mainHandler.post(CrashHandleLooper())
+            mainHandler.post(CrashHandleLooper(crashHandler))
         }
     }
 
@@ -52,14 +47,8 @@ internal class CrashHandleLooper : Runnable {
                 val handler: Handler = target.get(message) as Handler
                 handler.dispatchMessage(message)
                 Binder.clearCallingIdentity()
-            } catch (invocationTargetException: InvocationTargetException) {
-                val throwable = invocationTargetException.cause?: invocationTargetException
-                uncaughtExceptionHandler.uncaughtException(Thread.currentThread(), throwable)
-
-                Handler().post(this)
-
             } catch (e: Exception) {
-                uncaughtExceptionHandler.uncaughtException(Thread.currentThread(), e)
+                crashHandler.onDispatchEventCrash(Thread.currentThread(), e)
 
                 Handler().post(this)
             }

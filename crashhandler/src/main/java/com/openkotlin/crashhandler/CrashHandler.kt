@@ -12,15 +12,6 @@ class CrashHandler private constructor(private val crashListener: CrashListener)
     private var activity: Activity? = null
     private lateinit var defaultExceptionHandler: Thread.UncaughtExceptionHandler
     private var isNeedSystemHandle: Boolean = true
-    private var lifecycleMethodSignArray = arrayListOf(
-            "onCreate",
-            "onStart",
-            "onRestart",
-            "onResume",
-            "onPause",
-            "onStop",
-            "onDestroy"
-    )
 
     override fun onActivityPaused(activity: Activity?) {
     }
@@ -54,8 +45,7 @@ class CrashHandler private constructor(private val crashListener: CrashListener)
         application.registerActivityLifecycleCallbacks(this)
         defaultExceptionHandler = Thread.getDefaultUncaughtExceptionHandler()
         this.isNeedSystemHandle = isNeedSystemHandle
-        CrashHandleLooper.setCrashHandler(this)
-        CrashHandleLooper.install()
+        CrashHandleLooper.install(this)
         Thread.setDefaultUncaughtExceptionHandler(this)
     }
 
@@ -63,28 +53,22 @@ class CrashHandler private constructor(private val crashListener: CrashListener)
         Thread().run {
             crashListener.handleCrashInAsync(e)
         }
-        if (isLifecycleCrash(e)) {
-            if (isNeedSystemHandle) {
-                defaultExceptionHandler.uncaughtException(t, e)
-            } else {
-                activity?.finish()
-            }
+        if (isNeedSystemHandle) {
+            defaultExceptionHandler.uncaughtException(t, e)
         } else {
-            activity?.runOnUiThread {
-                crashListener.handleCrashInUiThread(e, activity!!)
-                if (isNeedSystemHandle)
-                    defaultExceptionHandler.uncaughtException(t, e)
-            }
+            activity?.finish()
         }
     }
 
-    private fun isLifecycleCrash(e: Throwable?): Boolean {
-        if (e == null) return false
-        for (element in e.stackTrace) {
-            if (lifecycleMethodSignArray.contains(element.methodName)) return true
+    fun onDispatchEventCrash(t: Thread?, e: Throwable?) {
+        Thread().run {
+            crashListener.handleCrashInAsync(e)
         }
-        if (e.cause != null) return isLifecycleCrash(e.cause)
-        return false
+        activity?.runOnUiThread {
+            crashListener.handleCrashInUiThread(e, activity!!)
+            if (isNeedSystemHandle)
+                defaultExceptionHandler.uncaughtException(t, e)
+        }
     }
 
 }
