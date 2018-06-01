@@ -1,0 +1,31 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 27
+
+
+
+    defaultConfig {
+        minSdkVersion 22
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+}
+
+apply from : "bintrayUpload.gradle"

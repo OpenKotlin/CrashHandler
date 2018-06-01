@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CrashHandler</string>
+    <string name="crash">Crash!!!</string>
+    <string name="crash_instruction">Oooops! This application has crashed. Please click button below to close app or see the crash information.</string>
+    <string name="close_app">Close App</string>
+    <string name="show_details">Show Details</string>
+    <string name="hide_details">Hide Details</string>
+</resources>
