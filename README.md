@@ -2,14 +2,28 @@
 
 [![Build Status](https://api.travis-ci.org/OpenKotlin/CrashHandler.svg?branch=CrashHandle)](https://github.com/OpenKotlin/CrashHandler)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
+[ ![Download](https://api.bintray.com/packages/openkotlin/maven/CrashHandler/images/download.svg) ](https://bintray.com/openkotlin/maven/CrashHandler/_latestVersion)
 
 ## What is CrashHandler?
 
 CrashHandler is a simply util to handle android application crash, people who want handle application crash can use this util easily and also this util is uncoupled with their own code.
 
-## How I use it?
+## How to use it?
 
-- Add this repo to your project
+- Add Jcenter to your project
+
+  ```groovy
+  repositories {
+      jcenter()
+      // your own repositries...
+  }
+  ```
+
+- Add CrashHandler to your project
+
+  ```groovy
+  compile 'org.openkotlin.library:crashhandler:1.0.0'
+  ```
 
 - Install CrashHandler into your Application like below:
 
