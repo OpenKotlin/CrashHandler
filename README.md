@@ -22,7 +22,7 @@ CrashHandler is a simply util to handle android application crash, people who wa
 - Add CrashHandler to your project
 
   ```groovy
-  compile 'org.openkotlin.library:crashhandler:1.0.0'
+  compile 'org.openkotlin.library:crashhandler:1.0.0@aar'
   ```
 
 - Install CrashHandler into your Application like below:
