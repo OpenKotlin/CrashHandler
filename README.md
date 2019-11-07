@@ -49,7 +49,7 @@ CrashHandler is a simply util to handle android application crash, people who wa
 ## License
 
 ```
-Copyright 2018 OpenKotlin.
+Copyright 2019 OpenKotlin.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
